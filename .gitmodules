@@ -61,3 +61,4 @@
 [submodule "bundle/seoul256.vim"]
 	path = bundle/seoul256.vim
 	url = git://github.com/junegunn/seoul256.vim.git
+    ignore=dirty
