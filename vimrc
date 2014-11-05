@@ -102,7 +102,7 @@ set background=dark             "Use dark backgrounds. If using seoul256-light, 
 colorscheme seoul256            "Use seoul256. Change to seoul256-light if wanted.
 set colorcolumn=81              "Highlight column 81
 au VimResized * :wincmd =       "auto resize split windows on parent resize
-let mapleader=","               "map leader to comma
+nmap <Space> <Leader>
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 " From TPope's sensible.vim
