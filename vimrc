@@ -85,7 +85,8 @@ set scrolloff=3                 "3 lines on top and bottom when scrolling
 set sidescrolloff=3             "3 lines of buffer when side scrolling
 set splitbelow                  "Split windows below current
 set splitright                  "Split window to right
-set linebreak                   "wrap whole word, "list on" breaks this
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ "when 'list on' is set
+set linebreak                   "wrap whole word, 'list on' breaks this
 set showbreak=»»»               "Character to show on wrapped lines
 set foldmethod=indent           "Create folds at indents
 set foldnestmax=5               "Don't go deeper than 5 nested indents
@@ -107,15 +108,6 @@ let mapleader=","               "map leader to comma
 " From TPope's sensible.vim
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
-endif
-
-"From TPope's sensible.vim
-"https://github.com/tpope/vim-sensible/
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-  if !has('win32') && (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
-    let &listchars = "tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
-  endif
 endif
 
 let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
