@@ -89,13 +89,16 @@ set linebreak                   "wrap whole word, "list on" breaks this
 set showbreak=»»»               "Character to show on wrapped lines
 set foldmethod=indent           "Create folds at indents
 set foldnestmax=5               "Don't go deeper than 5 nested indents
+"seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
 let g:seoul256_background=236
+"seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
+let g:seoul256_light_background=252
 autocmd FileType * unlet! g:airline#extensions#whitespace#checks
 autocmd FileType markdown let g:airline#extensions#whitespace#checks = [ 'indent' ]
 filetype plugin indent on
 syntax enable                   "syntax highlighting
-set background=dark             "Use dark backgrounds
-colorscheme seoul256            "Use seoul256
+set background=dark             "Use dark backgrounds. If using seoul256-light, set to light.
+colorscheme seoul256            "Use seoul256. Change to seoul256-light if wanted.
 set colorcolumn=81              "Highlight column 81
 au VimResized * :wincmd =       "auto resize split windows on parent resize
 let mapleader=","               "map leader to comma
