@@ -90,6 +90,7 @@ set linebreak                   "wrap whole word, 'list on' breaks this
 set showbreak=»»»               "Character to show on wrapped lines
 set foldmethod=indent           "Create folds at indents
 set foldnestmax=5               "Don't go deeper than 5 nested indents
+set cryptmethod=blowfish        "Set crypt method to blowfish.  Requires vim 7.3+
 "seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
 let g:seoul256_background=236
 "seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
