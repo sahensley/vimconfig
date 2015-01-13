@@ -113,7 +113,7 @@ endif
 
 let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'path_html': '~/.vimhodgepodge/wiki_html',
-            \ 'syntax': 'markdown', 'ext': '.markdown'}]
+            \ 'syntax': 'markdown', 'ext': '.wiki'}]
 
 " Don't show UNC paths on startify
 let g:startify_skiplist = [ '\\\' ]
