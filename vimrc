@@ -7,17 +7,14 @@ execute pathogen#infect()
 if has("win32") || has("win64")
     if has("gui_running")
         set guifont=Consolas:h12:cANSI
-        let g:airline_powerline_fonts = 0
     endif
-    "Copy contents into the system clipboard
-    set clipboard=unnamed
     "Set fileformat to DOS style
     set fileformat=dos
 elseif has("unix")
     if has("gui_running")
         set guifont=DejaVu\ Sans\ Mono\ 11
-        set fileformat=unix
     endif
+    set fileformat=unix
 endif
 
 "Turn on automatic backups and set path
@@ -91,6 +88,7 @@ set showbreak=»»»               "Character to show on wrapped lines
 set foldmethod=indent           "Create folds at indents
 set foldnestmax=5               "Don't go deeper than 5 nested indents
 set cryptmethod=blowfish        "Set crypt method to blowfish.  Requires vim 7.3+
+set clipboard=unnamed           "Copy contents into the system clipboard
 "seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
 let g:seoul256_background=236
 "seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
@@ -117,6 +115,9 @@ let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
 
 " Don't show UNC paths on startify
 let g:startify_skiplist = [ '\\\' ]
+
+" Don't use powerline patched fonts in airline
+let g:airline_powerline_fonts = 0
 
 "Turn on backups
 set backup
