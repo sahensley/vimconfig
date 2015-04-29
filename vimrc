@@ -118,6 +118,8 @@ let g:startify_skiplist = [ '\\\' ]
 
 " Don't use powerline patched fonts in airline
 let g:airline_powerline_fonts = 0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 "Turn on backups
 set backup
