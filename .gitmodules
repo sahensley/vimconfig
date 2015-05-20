@@ -62,3 +62,6 @@
 	path = bundle/seoul256.vim
 	url = git://github.com/junegunn/seoul256.vim.git
     ignore=dirty
+[submodule "bundle/vim-ansible-yaml"]
+	path = bundle/vim-ansible-yaml
+	url = git://github.com/chase/vim-ansible-yaml.git
