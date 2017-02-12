@@ -23,7 +23,7 @@ Plug 'yggdroot/indentline'
 " BetterWhitespace - whitespace highlighting
 Plug 'ntpeters/vim-better-whitespace'
 " Scratch - scratch buffer
-Plug 'mtth/scratch.vim'
+Plug 'sahensley/scratch.vim'
 " Vimwiki - personal wiki
 Plug 'vimwiki/vimwiki'
 call plug#end()
