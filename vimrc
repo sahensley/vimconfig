@@ -1,7 +1,33 @@
 "~./vimrc top of form
-"Pathogen settings, needs to be near top
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+
+" Plugin initialization {{{
+call plug#begin()
+" Seoul256 - color scheme
+Plug 'junegunn/seoul256.vim'
+" Airline - fancy statusline
+Plug 'vim-airline/vim-airline'
+" BufExplorer - easier buffer switching
+Plug 'jlanzarotta/bufexplorer'
+" Commentary - easy commenting via 'g c'
+Plug 'tpope/vim-commentary'
+" Fugitive - git wrapper
+Plug 'tpope/vim-fugitive'
+" Vinegar - netrw enhancement
+Plug 'tpope/vim-vinegar'
+" Neomake - asynchronous make and syntax checking
+Plug 'benekastah/neomake'
+" Ansible-VIM - better support for Ansible YAML playbooks
+Plug 'pearofducks/ansible-vim'
+" indentLine - shows indention levels with 'set list' on
+Plug 'yggdroot/indentline'
+" BetterWhitespace - whitespace highlighting
+Plug 'ntpeters/vim-better-whitespace'
+" Scratch - scratch buffer
+Plug 'mtth/scratch.vim'
+" Vimwiki - personal wiki
+Plug 'vimwiki/vimwiki'
+call plug#end()
+" }}}
 
 "Load different settings depending on OS
 if has("win32") || has("win64")
@@ -17,40 +43,42 @@ elseif has("unix")
     set fileformat=unix
 endif
 
-"Turn on automatic backups and set path
-"Check if backup dir exists, if not create
+" Directory creation {{{
+" Turn on automatic backups and set path
+" Check if backup dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/backups')
     silent! call mkdir($HOME . '/.vimhodgepodge/backups','p')
 endif
 set backupdir=$HOME/.vimhodgepodge/backups
 
-"Check if tmp dir exists, if not create
+" Check if tmp dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/tmp')
     silent! call mkdir($HOME . '/.vimhodgepodge/tmp','p')
 endif
 set directory=$HOME/.vimhodgepodge/tmp
 
-"Check if view dir exists, if not create
+" Check if view dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/view')
     silent! call mkdir($HOME . '/.vimhodgepodge/view','p')
 endif
 set viewdir=$HOME/.vimhodgepodge/view
 
-"Check if view dir exists, if not create
+" Check if view dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/session')
     silent! call mkdir($HOME . '/.vimhodgepodge/session','p')
 endif
 let g:sessiondir=$HOME . '/.vimhodgepodge/session'
 
-"Check if wiki dir exists, if not create
+" Check if wiki dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/wiki')
     silent! call mkdir($HOME . '/.vimhodgepodge/wiki','p')
 endif
 
-"Check if wiki_html dir exists, if not create
+" Check if wiki_html dir exists, if not create
 if !isdirectory($HOME . '/.vimhodgepodge/wiki_html')
     silent! call mkdir($HOME . '/.vimhodgepodge/wiki_html','p')
 endif
+" }}}
 
 set encoding=utf-8              "force utf-8 encoding
 set t_Co=256                    "256 color support
@@ -82,7 +110,7 @@ set scrolloff=3                 "3 lines on top and bottom when scrolling
 set sidescrolloff=3             "3 lines of buffer when side scrolling
 set splitbelow                  "Split windows below current
 set splitright                  "Split window to right
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ "when 'list on' is set
+set listchars=tab:\|\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$ " when 'list on' is set
 set linebreak                   "wrap whole word, 'list on' breaks this
 set showbreak=»»»               "Character to show on wrapped lines
 set foldmethod=indent           "Create folds at indents
@@ -92,16 +120,16 @@ set clipboard=unnamed           "Copy contents into the system clipboard
 "seoul256 (dark) range 233 (darkest) ~ 239 (lightest) default: 237
 let g:seoul256_background=236
 "seoul256 (light) range 252 (darkest) ~ 256 (lightest) default: 253
-let g:seoul256_light_background=252
+let g:seoul256_light_background=253
 autocmd FileType * unlet! g:airline#extensions#whitespace#checks
 autocmd FileType markdown let g:airline#extensions#whitespace#checks = [ 'indent' ]
 autocmd FileType vimwiki let g:airline#extensions#whitespace#checks = [ 'indent' ]
 filetype plugin indent on
-syntax enable                   "syntax highlighting
-set background=dark             "Use dark backgrounds. If using seoul256-light, set to light.
-colorscheme seoul256            "Use seoul256. Change to seoul256-light if wanted.
-set colorcolumn=81              "Highlight column 81
-au VimResized * :wincmd =       "auto resize split windows on parent resize
+syntax enable                   " Syntax highlighting
+set background=light            " Use dark backgrounds. If using seoul256-light, set to light.
+colorscheme seoul256-light      " Use seoul256-light. Change to seoul256 for a darker scheme.
+set colorcolumn=81              " Highlight column 81
+au VimResized * :wincmd =       " Auto resize split windows on parent resize
 nmap <Space> <Leader>
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
@@ -114,19 +142,20 @@ let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'path_html': '~/.vimhodgepodge/wiki_html',
             \ 'syntax': 'markdown', 'ext': '.wiki'}]
 
-" Don't show UNC paths on startify
-let g:startify_skiplist = [ '\\\' ]
-
+" Airline plugin configuration {{{
 " Don't use powerline patched fonts in airline
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_extensions = ['branch']
+" }}}
 
-"Turn on backups
+" Turn on backups {{{
 set backup
-"When file is written, grab the current timestamp and use as the backup
-"extension.  I.E. example.txt_1970-01-01.0000.bak
+" When file is written, grab the current timestamp and use as the backup
+" extension.  I.E. example.txt_1970-01-01.0000.bak
 :au BufWritePre * let &backupext=strftime("_%Y-%m-%d.%H%M.bak")
+" }}}
 
 "GUI mode toolbar removal
 if has('gui_running')
@@ -140,9 +169,6 @@ set viewoptions=cursor,folds,slash
 set sessionoptions=buffers
 "Do not save buffer options which breaks syntax highlighting on restore
 set sessionoptions-=options
-
-"Disable folding on the Startify plugin
-autocmd Filetype startify setlocal nofoldenable
 
 "######Keymappings######
 "Easy navigation while in split mode
@@ -169,17 +195,6 @@ vnoremap <F1> <Nop>
 :nnoremap <F2> :set paste! paste?<CR>
 "Toggle spell check
 :nnoremap <F3> :set spell! spell?<CR>
-"Goto previous tab (moves forward/right)
-:nnoremap <F9> :tabprevious<CR>
-"Goto next tab (moves forward/right)
-:nnoremap <F10> :tabNext<CR>
-"Goto previous buffer (moves backward/left)
-:nnoremap <F11> :bprevious<CR>
-"Goto next buffer (moves forward/right)
-:nnoremap <F12> :bNext<CR>
-
-"Map NERDTree quick access
-nnoremap <C-n> :NERDTreeToggle<cr>
 
 "Quickly typing will exit Insert mode
 :imap jj <Esc>
