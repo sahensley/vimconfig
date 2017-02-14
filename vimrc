@@ -1,4 +1,5 @@
 " ~./vimrc top of form
+" vim: fdm=marker
 
 " Plugin initialization {{{
 call plug#begin()
