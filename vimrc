@@ -152,6 +152,7 @@ let g:airline_extensions = ['branch']
 " }}}
 
 " ALE plugin configuration {{{
+let g:ale_enabled = 0
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 0
