@@ -1,4 +1,4 @@
-"~./vimrc top of form
+" ~./vimrc top of form
 
 " Plugin initialization {{{
 call plug#begin()
@@ -14,8 +14,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " Vinegar - netrw enhancement
 Plug 'tpope/vim-vinegar'
-" Neomake - asynchronous make and syntax checking
-Plug 'benekastah/neomake'
+" ALE - Asynchronous Lint Engine
+Plug 'w0rp/ale'
 " Ansible-VIM - better support for Ansible YAML playbooks
 Plug 'pearofducks/ansible-vim'
 " indentLine - shows indention levels with 'set list' on
@@ -30,14 +30,14 @@ call plug#end()
 " }}}
 
 "Load different settings depending on OS
-if has("win32") || has("win64")
-    if has("gui_running")
+if has('win32') || has('win64')
+    if has('gui_running')
         set guifont=Consolas:h12:cANSI
     endif
     "Set fileformat to DOS style
     set fileformat=dos
-elseif has("unix")
-    if has("gui_running")
+elseif has('unix')
+    if has('gui_running')
         set guifont=DejaVu\ Sans\ Mono\ 11
     endif
     set fileformat=unix
@@ -83,12 +83,12 @@ endif
 set encoding=utf-8              "force utf-8 encoding
 set t_Co=256                    "256 color support
 set laststatus=2                "never show the status line
-set nu                          "set line numbering
-set rnu                         "set relative line number
+set number                      "set line numbering
+set relativenumber              "set relative line number
 set cursorline                  "highlight current line
 set backspace=indent,eol,start  "delete line breaks, auto ins and start of insert mode
 set hlsearch                    "Switch on search pattern highlighting.
-set ch=1                        "Make command line two lines high
+set cmdheight=1                 "Make command line two lines high
 set mousehide                   "Hide the mouse when typing text
 set showcmd                     "Show (partial) command in status line.
 set showmatch                   "Show matching brackets.
@@ -134,7 +134,7 @@ nmap <Space> <Leader>
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 " From TPope's sensible.vim
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) ==# ''
   runtime! macros/matchit.vim
 endif
 
@@ -148,6 +148,13 @@ let g:airline_powerline_fonts = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_extensions = ['branch']
+" }}}
+
+" ALE plugin configuration {{{
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 1
 " }}}
 
 " Turn on backups {{{
@@ -171,46 +178,48 @@ set sessionoptions=buffers
 set sessionoptions-=options
 
 "######Keymappings######
-"Easy navigation while in split mode
+" Easy navigation while in split mode
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"Map j and k to only move one line on the screen when word wrapped
+" Map j and k to only move one line on the screen when word wrapped
 nnoremap j gj
 nnoremap k gk
 
-"Unmap Ex mode
+" Unmap Ex mode
 nnoremap Q <Nop>
 
-"Map the Function keys
-"unmap F1
+" Map the Function keys
+" unmap F1
 inoremap <F1> <Nop>
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>
-"Turn off highlighting
+" Turn off highlighting
 :nnoremap <F1> :nohlsearch<CR>
-"Toggle paste mode
+" Toggle paste mode
 :nnoremap <F2> :set paste! paste?<CR>
-"Toggle spell check
+" Toggle spell check
 :nnoremap <F3> :set spell! spell?<CR>
+" Toggle linting
+:nnoremap <F4> :ALEToggle<CR>
 
-"Quickly typing will exit Insert mode
+" Quickly typing will exit Insert mode
 :imap jj <Esc>
 
-"######Custom commands and modes######
-"Write file even if it is read only.  SudoWrite.
+" ######Custom commands and modes######
+" Write file even if it is read only.  SudoWrite.
 command! SudoWrite write !sudo tee % > /dev/null
-"Markdown to rtf.  Produces .rtf file in the same directory as original.
+" Markdown to rtf.  Produces .rtf file in the same directory as original.
 command! Md2rtf silent !pandoc --from markdown % --to rtf --output %:r.rtf --standalone
-"Markdown to html.  Produces .html file in the same directory as original.
+" Markdown to html.  Produces .html file in the same directory as original.
 command! Md2html silent !pandoc -f markdown % -t html -o %:r.html -s
-"Markdown to html in a Vertical split
+" Markdown to html in a Vertical split
 command! Md2htmlVsp :call MarkdownToHTMLVSplit()
 
-if !exists("g:pandoc_command")
-    let g:pandoc_command = "pandoc"
+if !exists('g:pandoc_command')
+    let g:pandoc_command = 'pandoc'
 endif
 
 function! MarkdownToHTMLVSplit()
