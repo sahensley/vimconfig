@@ -17,6 +17,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 " ALE - Asynchronous Lint Engine
 Plug 'w0rp/ale'
+" Grepper - Async Grep Tool
+Plug 'mhinz/vim-grepper'
 " Ansible-VIM - better support for Ansible YAML playbooks
 Plug 'pearofducks/ansible-vim'
 " indentLine - shows indention levels with 'set list' on
