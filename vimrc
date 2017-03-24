@@ -29,6 +29,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'sahensley/scratch.vim'
 " Vimwiki - personal wiki
 Plug 'vimwiki/vimwiki'
+" Table Mode - easy ASCII tables
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 " }}}
 
