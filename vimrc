@@ -149,6 +149,10 @@ let g:vimwiki_url_maxsave = 0
 let g:vimwiki_conceallevel = 0
 " }}}
 
+" IndentLine plugin configuration {{{
+let g:indentLine_setConceal=0
+" }}}
+
 " Airline plugin configuration {{{
 " Don't use powerline patched fonts in airline
 let g:airline_powerline_fonts = 0
