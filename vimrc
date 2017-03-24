@@ -29,8 +29,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'sahensley/scratch.vim'
 " Vimwiki - personal wiki
 Plug 'vimwiki/vimwiki'
-" Table Mode - easy ASCII tables
-Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 " }}}
 
@@ -143,14 +141,13 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &runtimepath) =
   runtime! macros/matchit.vim
 endif
 
+" VimWiki plugin configuration {{{
 let g:vimwiki_list = [{'path': '~/.vimhodgepodge/wiki',
             \ 'path_html': '~/.vimhodgepodge/wiki_html',
             \ 'syntax': 'markdown', 'ext': '.wiki'}]
-
 let g:vimwiki_url_maxsave = 0
 let g:vimwiki_conceallevel = 0
-let g:vimwiki_table_auto_fmt = 0
-let g:vimwiki_table_mappings = 0
+" }}}
 
 " Airline plugin configuration {{{
 " Don't use powerline patched fonts in airline
