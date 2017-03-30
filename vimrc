@@ -5,6 +5,8 @@
 call plug#begin()
 " Seoul256 - color scheme
 Plug 'junegunn/seoul256.vim'
+" Goyo - distraction free writing
+Plug 'junegunn/goyo.vim'
 " Airline - fancy statusline
 Plug 'vim-airline/vim-airline'
 " BufExplorer - easier buffer switching
