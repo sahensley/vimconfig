@@ -23,6 +23,8 @@ Plug 'w0rp/ale'
 Plug 'mhinz/vim-grepper'
 " Ansible-VIM - better support for Ansible YAML playbooks
 Plug 'pearofducks/ansible-vim'
+" Python PEP8 Indent - nicer Python indents
+Plug 'Vimjas/vim-python-pep8-indent'
 " indentLine - shows indention levels with 'set list' on
 Plug 'yggdroot/indentline'
 " BetterWhitespace - whitespace highlighting
