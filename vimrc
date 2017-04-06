@@ -23,6 +23,8 @@ Plug 'w0rp/ale'
 Plug 'mhinz/vim-grepper'
 " Ansible-VIM - better support for Ansible YAML playbooks
 Plug 'pearofducks/ansible-vim'
+" PS1 - Powershell syntax
+Plug 'PProvost/vim-ps1'
 " Python PEP8 Indent - nicer Python indents
 Plug 'Vimjas/vim-python-pep8-indent'
 " indentLine - shows indention levels with 'set list' on
