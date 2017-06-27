@@ -47,7 +47,7 @@ if has('win32') || has('win64')
     set fileformat=dos
 elseif has('unix')
     if has('gui_running')
-        set guifont=DejaVu\ Sans\ Mono\ 11
+        set guifont=Menlo\ Regular:h17
     endif
     set fileformat=unix
 endif
